@@ -60,6 +60,24 @@ return [
             'report' => false,
         ],
 
+        'photo_pets' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/pets/photos'),
+            'url' => env('APP_URL').'/storage/pets/photos',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
+        'vaccination_cards' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/pets/vaccination_cards'),
+            'url' => env('APP_URL') . '/storage/pets/vaccination_cards',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
     ],
 
     /*
