@@ -29,11 +29,12 @@ class PetController extends Controller
     {
         $petValidated = $request->validated();
 
+        $photoPath = null;
         if($request->hasFile('photo_path')){
             $file = $request->file('photo_path');
             $fileName = uniqid() . '_' . $file->getClientOriginalName();
-            // Guarda en storage/app/public/pets/photos
-            $photoPath = $file->storeAs('', $fileName, 'photo_pets'); // guardo en storage/petPhotos
+            // Guardar en storage/app/public/pets
+            $photoPath = $file->storeAs('pets', $fileName, 'public');
         }
 
         Pet::create([
@@ -54,7 +55,6 @@ class PetController extends Controller
         ]);
 
         return response()->json(['message' => 'Pet registered successfully.'], 201);
-
     }
 
     /**

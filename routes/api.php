@@ -1,23 +1,29 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\PetController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-//Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-//    return $request->user();
-//});
+// Rutas públicas
+Route::post('/login', [AuthController::class, 'login']);
+// Servir imágenes de mascotas
+Route::get('/pet-photos/{filename}', function ($filename) {
+    $path = storage_path('app/petPhotos/' . $filename);
+    
+    if (!File::exists($path)) {
+        abort(404);
+    }
 
-Route::middleware(['auth:sanctum'])->group(function () {
+    $file = File::get($path);
+    $type = File::mimeType($path);
 
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
+    return response($file, 200)->header('Content-Type', $type);
+})->name('pet.photos');
 
-//    Route::post('/pets', [PetController::class, 'store']);
-    // CRUD de mascotas
+// Rutas protegidas
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', [AuthController::class, 'user']);
+    Route::post('/logout', [AuthController::class, 'logout']);
     Route::apiResource('pets', PetController::class);
-
+    Route::apiResource('owners', \App\Http\Controllers\OwnerController::class);
 });
-
-//require __DIR__.'/auth.php';
