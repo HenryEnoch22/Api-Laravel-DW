@@ -1,3 +1,29 @@
+# Proyecto Backend - Laravel API
+
+## 🚀 Instrucciones para ejecutar el proyecto
+
+1. **Clonar este repositorio:**
+   ```bash
+   git clone <URL_DEL_REPO_BACKEND>
+   cd <nombre_del_proyecto>
+2. Crear el archivo de entorno:
+    ```bash
+    copy .env.example .env
+3. Instalar dependencias:
+    ```bash
+    composer install
+4. Generar la clave de la aplicación:
+    ```bash
+    php artisan key:generate
+5. Crear enlace simbólico para el almacenamiento:
+    ```bash
+    php artisan storage:link
+6. Iniciar el servidor:
+    ```bash
+    php artisan serve
+7. Clonar también el repositorio del frontend y seguir sus instrucciones:
+[Repositorio Frontend](https://github.com/EmilioJasso19/pet-daycare).
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
