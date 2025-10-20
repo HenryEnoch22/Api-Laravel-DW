@@ -33,7 +33,6 @@ class PetController extends Controller
         if($request->hasFile('photo_path')){
             $file = $request->file('photo_path');
             $fileName = uniqid() . '_' . $file->getClientOriginalName();
-            // Guardar en storage/app/public/pets
             $photoPath = $file->storeAs('pets', $fileName, 'public');
         }
 
@@ -92,7 +91,7 @@ class PetController extends Controller
             $file = $request->file('photo_path');
             $fileName = uniqid() . '_' . $file->getClientOriginalName();
             // Guarda en storage/app/public/pets/photos
-            $photoPath = $file->storeAs('', $fileName, 'photo_pets'); // guardo en storage/petPhotos
+            $photoPath = $file->storeAs('pets', $fileName, 'public');
             $petValidated['photo_path'] = $photoPath;
         }
 
